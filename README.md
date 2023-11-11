@@ -19,7 +19,7 @@ A simple Django Rest Framework API ready to be deployed in Docker image
 * git clone git@github.com:vangelis-coding-factory/drf2-deployed.git
 * cd drf2
 * python3 -m venv venv
-* source/bin/activate
+* source venv/bin/activate
 * pip install -r requirements.txt
 * cd ebooksapi
 * python manage.py makemigrations

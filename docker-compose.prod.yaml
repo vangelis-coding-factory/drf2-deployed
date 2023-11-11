@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  web:
+    #build: ./ebooksapi
+    build: 
+      context: ./ebooksapi
+      dockerfile: Dockerfile.prod
+    command: gunicorn ebooksapi.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      #- ./ebooksapi/:/usr/src/ebooksapi/
+      - static_volume:/home/drf2/web/staticfiles
+    #ports:
+    #  - 8000:8000
+    expose:
+      - 8000
+    env_file:
+      - ./.env.prod
+    depends_on:
+      - db
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.prod.db
+    ports:
+      - "5433:5432"
+  nginx:
+      build: ./nginx
+      volumes:
+        - static_volume:/home/drf2/web/staticfiles
+      ports:
+        - 1337:80
+      depends_on:
+        - web
+    
+
+volumes:
+  postgres_data:
+  static_volume:  

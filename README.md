@@ -20,8 +20,8 @@ A simple Django Rest Framework API ready to be deployed in Docker image
 * cd drf2
 * python3 -m venv venv
 * source venv/bin/activate
-* pip install -r requirements.txt
 * cd ebooksapi
+* pip install -r requirements.txt
 * python manage.py makemigrations
 * python manage.py migrate
 * python manage.py createsuperuser
